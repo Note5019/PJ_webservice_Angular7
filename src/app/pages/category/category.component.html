@@ -1,0 +1,84 @@
+<div class="layout-container">
+
+  <form #form="ngForm" autocomplete="off">
+
+    <div class="product-grid card">
+      {{productService.formSearchProduct.productName}}
+      {{productService.formSearchProduct.catID}}
+      {{productService.formSearchProduct.priceFrom}}
+      {{productService.formSearchProduct.priceTo}}
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-lg-7 col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Search</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Product Id" name="productID" #productID="ngModel"
+                  [(ngModel)]="productService.formSearchProduct.productID">
+                <input type="text" class="form-control" placeholder="Product Name" name="productName"
+                  #productName="ngModel" [(ngModel)]="productService.formSearchProduct.productName">
+              </div>
+            </div>
+            <div class="col-lg-5  col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Category</span>
+                </div>
+                <select class="custom-select" name="catID" #catID="ngModel"
+                  [(ngModel)]="productService.formSearchProduct.catID">
+                  <option selected>Choose Category</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Price Range</span>
+            </div>
+            <input type="text" class="form-control" placeholder="From" name="priceFrom" #priceFrom="ngModel"
+              [(ngModel)]="productService.formSearchProduct.priceFrom">
+            <input type="text" class="form-control" placeholder="To" name="priceTo" #priceTo="ngModel"
+              [(ngModel)]="productService.formSearchProduct.priceTo">
+          </div>
+        </div>
+        <div class="col-auto text-right">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" (click)="productService.refreshList()">Search</button>
+            <!-- <button type="button" class="btn btn-danger">Clear</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="product-grid card">
+    <div class="row">
+      <div class="col-md-3 col-sm-6" *ngFor="let product of productService.productList;let i = index">
+        <div class="card mb-3">
+          <div class="image-container">
+            <div class="product-image"
+              [ngStyle]="{'background-image': 'url(./assets/img/' + product.imgUrl + '),url(./assets/img/no-img.jpg)'}">
+            </div>
+            <div class="overlay">
+              <div class="button button-primary" [routerLink]="['../product',i+1]">View Details</div>
+              <div class="button button-primary" (click)="addToCart(product)">Add To Cart</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">{{product.productID}}</div>
+            <div class="card-text">{{product.productName}}</div>
+            <div class="card-text text-right">{{product.price | currency :'฿':true }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
