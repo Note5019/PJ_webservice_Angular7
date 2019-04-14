@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { SearchProduct } from './../models/searchProduct';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -7,9 +8,10 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductServiceService {
-  readonly rootURL = "http://localhost:60669/api";
+  readonly rootURL = environment.rootURL;
 
   productList: Product[];
+  isSearch: boolean = false;
   formSearchProduct: SearchProduct = {
     productID: "",
     productName: "",
@@ -19,19 +21,30 @@ export class ProductServiceService {
   }
 
   constructor(private http: HttpClient) {
-    console.log("start");
+    this.refreshList();
+    this.isSearch = false;
+  }
 
+  clearFormSearchProduct() {
+    this.isSearch = false;
+    this.formSearchProduct = {
+      productID: "",
+      productName: "",
+      catID: "",
+      priceFrom: 0,
+      priceTo: 100000
+    }
     this.refreshList();
   }
 
-  refreshList() {
-    console.log("refreshList()");
+  searchProduct() {
+    this.isSearch = true;
     let params3 = new HttpParams()
-    .set('productID', this.formSearchProduct.productID)
-    .set('productName', this.formSearchProduct.productName)
-    .set('catID', this.formSearchProduct.catID)
-    .set('priceFrom', this.formSearchProduct.priceFrom.toString())
-    .set('priceTo', this.formSearchProduct.priceTo.toString());
+      .set('productID', this.formSearchProduct.productID)
+      .set('productName', this.formSearchProduct.productName)
+      .set('catID', this.formSearchProduct.catID)
+      .set('priceFrom', this.formSearchProduct.priceFrom.toString())
+      .set('priceTo', this.formSearchProduct.priceTo.toString());
     // if(this.formSearchProduct.productName == ""){
     //   console.log("productName", this.formSearchProduct.productName);
     // }
@@ -48,7 +61,14 @@ export class ProductServiceService {
     console.log(params3);
     this.http.get(this.rootURL + "/product", { params: params3 })
       .toPromise()
-      .then(res => this.productList = res as Product[]).then(res => { console.log('1', this.productList) });
-    console.log("2", this.productList);
+      .then(res => this.productList = res as Product[]).then(res => { console.log('searchProductList', this.productList) });
+  }
+
+  refreshList() {
+    this.isSearch = false;
+    console.log("refreshList()");
+    this.http.get(this.rootURL + "/product")
+      .toPromise()
+      .then(res => this.productList = res as Product[]).then(res => { console.log('refreshProductList', this.productList) });
   }
 }

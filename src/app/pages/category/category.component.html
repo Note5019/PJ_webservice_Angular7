@@ -1,12 +1,9 @@
 <div class="layout-container">
 
+  <!-- {{productService.formSearchProduct | json}} -->
   <form #form="ngForm" autocomplete="off">
 
     <div class="product-grid card">
-      {{productService.formSearchProduct.productName}}
-      {{productService.formSearchProduct.catID}}
-      {{productService.formSearchProduct.priceFrom}}
-      {{productService.formSearchProduct.priceTo}}
       <div class="row">
         <div class="col-12">
           <div class="row">
@@ -27,9 +24,9 @@
                   <span class="input-group-text" id="basic-addon1">Category</span>
                 </div>
                 <select class="custom-select" name="catID" #catID="ngModel"
-                  [(ngModel)]="productService.formSearchProduct.catID">
-                  <option selected>Choose Category</option>
-                  <option value="1">One</option>
+                  [(ngModel)]="productService.formSearchProduct.catID" placeholder="Product Id">
+                  <option value="" disabled selected>Choose Category</option>
+                  <option *ngFor="let category of categoryService.categoryList" value="{{category.catID}}">{{category.catName}}</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
@@ -37,21 +34,21 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Price Range</span>
             </div>
-            <input type="text" class="form-control" placeholder="From" name="priceFrom" #priceFrom="ngModel"
+            <input type="number" class="form-control" placeholder="From" name="priceFrom" #priceFrom="ngModel"
               [(ngModel)]="productService.formSearchProduct.priceFrom">
-            <input type="text" class="form-control" placeholder="To" name="priceTo" #priceTo="ngModel"
+            <input type="number" class="form-control" placeholder="To" name="priceTo" #priceTo="ngModel"
               [(ngModel)]="productService.formSearchProduct.priceTo">
           </div>
         </div>
-        <div class="col-auto text-right">
+        <div class="col text-right">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" (click)="productService.refreshList()">Search</button>
-            <!-- <button type="button" class="btn btn-danger">Clear</button> -->
+            <button type="button" class="btn btn-primary" (click)="productService.searchProduct()">Search</button>
+            <button *ngIf="productService.isSearch" type="button" class="btn btn-danger"  (click)="productService.clearFormSearchProduct()">Clear</button>
           </div>
         </div>
       </div>

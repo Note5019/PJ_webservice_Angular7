@@ -11,14 +11,25 @@
     <div class="header-nav-wrapper">
       <ul class="header-nav">
         <li class="header-nav-item">
-          <a routerLink="/home">HOME</a>
+          <a routerLink="/home" routerLinkActive="active-link">HOME</a>
         </li>
         <li class="header-nav-item">
-          <a routerLink="/category">SHOP</a>
+          <a routerLink="/category" routerLinkActive="active-link">SHOP</a>
           <!-- <span class="fa fa-caret-down"></span> -->
         </li>
         <li class="header-nav-item">
-          <a routerLink="/">JOURNAL</a>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="link" aria-haspopup="true"
+              aria-expanded="false" routerLinkActive="active-link">MASTER</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="master/product" routerLinkActive="active-link">PRODUCTS</a>
+              <a class="dropdown-item" routerLink="master/">CATEGORIES</a>
+              <a class="dropdown-item" routerLink="master/">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="master/">Separated link</a>
+            </div>
+          </div>
+          <!-- <a routerLink="/">MASTER<span class="fa fa-caret-down"></span></a> -->
         </li>
         <li class="header-nav-item">
           <a routerLink="/">MORE<span class="fa fa-caret-down"></span></a>

@@ -1,0 +1,32 @@
+<div class="card m-3">
+  <div class="m-3">
+    <table class="table table-striped">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">#ID</th>
+          <th scope="col">Pic</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productService.productList" class="text-center">
+          <th scope="row">{{product.productID}}</th>
+          <td>
+              <!-- style="background-image: url('./assets/img/ + {{product.imgURL}} + '),url(./../../../../assets/img/no-img.jpg);" -->
+            <div class="product-image"
+              [ngStyle]="{'background-image': 'url(./assets/img/' + product.imgUrl + '),url(./../../../../assets/img/no-img.jpg)'}">
+            </div>
+          </td>
+          <td>{{product.productName}}</td>
+          <td class="text-right">{{product.price}}</td>
+          <td class="text-right">{{product.amount}}</td>
+          <td class="text-center"><i class="far fa-edit btn btn-info"></i> &nbsp; <i
+              class="far fa-trash-alt btn btn-danger"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

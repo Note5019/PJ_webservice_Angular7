@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { MasterProductComponent } from './pages/master-product/master-product.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from "@angular/forms";
     CategoryComponent,
     CartComponent,
     TopbarComponent,
-    HomeComponent
+    HomeComponent,
+    MasterProductComponent,
   ],
   imports: [
     BrowserModule,

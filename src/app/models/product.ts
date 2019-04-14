@@ -3,5 +3,6 @@ export class Product {
     productName: string;
     catID: string;
     price?: number;
-    imagURL?: string
+    amount?: number;
+    imgURL?: string
 }
