@@ -1,7 +1,7 @@
 <div class="main-header navbar-fixed-top">
   <div class="header-menu">
     <div class="header-mobile-nav-wrapper">
-      <button type="button" class="navbar-toggle" (click)="collapse = !collapse">
+      <button type="button" class="navbar-toggle btn" (click)="collapse = !collapse">
         <span class="fa fa-bars fa-2x"></span>
       </button>
     </div>
@@ -41,7 +41,7 @@
     </div>
     <div class="header-cart-wrapper">
       <div class="header-cart" (click)="toggleCartPopup($event)">
-        <div class="mobil-shopping-cart">
+        <div class="mobil-shopping-cart btn">
           <span><i class="fa fa-shopping-cart fa-2x"></i> <span *ngIf="cart_num">( {{cart_num}} )</span></span>
         </div>
         <div class="header-cart-item">

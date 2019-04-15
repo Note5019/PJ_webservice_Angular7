@@ -23,7 +23,7 @@
     .header-logo-wrapper {
         display: table-cell;
         text-align: center;
-        vertical-align: top;
+        vertical-align: middle;
     }
     .header-mobile-nav-wrapper {
         display: table-cell;

@@ -1,5 +1,7 @@
 @import url('//fonts.googleapis.com/css?family=Roboto:400,400italic,500,700|Playfair+Display:400,400italic,700,700italic|Montserrat:400|Karla:400');
-
+:root{
+  --topbar-color: #fff;
+}
 /* @import '../bootstrap.min.css'; */
 /* @import "/node_modules/fortawesome/fontawesome-free/css/fontawesome.min.css"; */
 body {
@@ -14,7 +16,7 @@ body {
   vertical-align: middle;
   display: table;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--topbar-color);
 }
 
 .main-header .header-menu {
