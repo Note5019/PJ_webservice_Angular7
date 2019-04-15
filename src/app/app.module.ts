@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { MasterProductComponent } from './pages/master-product/master-product.component';
+import { Topbar2Component } from './components/topbar2/topbar2.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MasterProductComponent } from './pages/master-product/master-product.co
     TopbarComponent,
     HomeComponent,
     MasterProductComponent,
+    Topbar2Component,
   ],
   imports: [
     BrowserModule,

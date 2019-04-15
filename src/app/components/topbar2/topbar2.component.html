@@ -1,0 +1,122 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">
+    <img src="./assets/img/logo.png" width="100" height="50" alt="">
+  </a>
+
+  <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active-link"><i class="fas fa-home"></i>
+          HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/category" routerLinkActive="active-link"><i class="fas fa-tags"></i>
+          SHOP</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-book"></i> MASTER
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="master/product" routerLinkActive="active-link">PRODUCTS</a>
+          <a class="dropdown-item" routerLink="master/">CATEGORIES</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="master/">PURCHASE</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="master/">SALE ORDER</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav my-3 my-lg-0">
+      <li class="nav-item">
+        <a class="nav-link " href="#">
+          <i class="fa fa-shopping-cart"></i> GO TO CART
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+
+
+</nav>
+
+
+
+<!-- <div class="main-header navbar-fixed-top">
+    <div class="header-menu">
+      <div class="header-mobile-nav-wrapper">
+        <button type="button" class="navbar-toggle btn" (click)="collapse = !collapse">
+          <span class="fa fa-bars fa-2x"></span>
+        </button>
+      </div>
+      <div class="header-logo-wrapper">
+        <img class="header-logo-image" src="./assets/img/logo.png" alt="Hero">
+      </div>
+      <div class="header-nav-wrapper">
+        <ul class="header-nav">
+          <li class="header-nav-item">
+            <a routerLink="/home" routerLinkActive="active-link">HOME</a>
+          </li>
+          <li class="header-nav-item">
+            <a routerLink="/category" routerLinkActive="active-link">SHOP</a>
+            <span class="fa fa-caret-down"></span>
+          </li>
+          <li class="header-nav-item">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="link" aria-haspopup="true"
+                aria-expanded="false" routerLinkActive="active-link">MASTER</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="master/product" routerLinkActive="active-link">PRODUCTS</a>
+                <a class="dropdown-item" routerLink="master/">CATEGORIES</a>
+                <a class="dropdown-item" routerLink="master/">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="master/">Separated link</a>
+              </div>
+            </div>
+            <a routerLink="/">MASTER<span class="fa fa-caret-down"></span></a>
+          </li>
+          <li class="header-nav-item">
+            <a routerLink="/">MORE<span class="fa fa-caret-down"></span></a>
+          </li>
+          <li class="header-nav-item">
+            <a routerLink="../contact">ติดต่อเรา</a>
+          </li>
+        </ul>
+      </div>
+      <div class="header-cart-wrapper">
+        <div class="header-cart" (click)="toggleCartPopup($event)">
+          <div class="mobil-shopping-cart btn">
+            <span><i class="fa fa-shopping-cart fa-2x"></i> <span *ngIf="cart_num">( {{cart_num}} )</span></span>
+          </div>
+          <div class="header-cart-item">
+            <a href="">MY CART <span *ngIf="cart_num">( {{cart_num}} )</span><span class="fa fa-caret-down"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="mobile-header-nav" *ngIf="collapse" (click)="collapse = !collapse">
+      <li>
+        <a routerLink="/">HOME</a>
+      </li>
+      <li>
+        <a routerLink="/">SHOP</a>
+      </li>
+      <li>
+        <a routerLink="/">JOURNAL</a>
+      </li>
+      <li>
+        <a routerLink="/">MORE</a>
+      </li>
+      <li>
+        <a routerLink="/">ติดต่อเรา</a>
+      </li>
+    </ul>
+    <cart-popup></cart-popup>
+  </div> -->
