@@ -31,7 +31,7 @@ export class ProductServiceService {
   }
 
   constructor(private http: HttpClient) {
-    // this.refreshList();
+    this.refreshList();
     console.log("log", this.refreshListMaster());
     this.isSearch = false;
     this.isSearchMaster = false;

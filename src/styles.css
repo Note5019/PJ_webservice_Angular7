@@ -1,7 +1,9 @@
 @import url('//fonts.googleapis.com/css?family=Roboto:400,400italic,500,700|Playfair+Display:400,400italic,700,700italic|Montserrat:400|Karla:400');
-:root{
+
+:root {
   --topbar-color: #fff;
 }
+
 /* @import '../bootstrap.min.css'; */
 /* @import "/node_modules/fortawesome/fontawesome-free/css/fontawesome.min.css"; */
 body {
@@ -181,16 +183,16 @@ body {
 }
 
 a.active-link {
-  border: solid 1px rgba(0,0,0,.5);
+  border: solid 1px rgba(0, 0, 0, .5);
   border-radius: 5px;
   background-color: rgba(216, 216, 216, 0.5);
 }
 
-input.ng-touched.ng-invalid.form-CUD{
+input.ng-touched.ng-invalid.form-CUD {
   border-color: #dc3545;
 }
 
-input.ng-touched.ng-valid.form-CUD{
+input.ng-touched.ng-valid.form-CUD {
   border-color: #28a745;
 }
 
@@ -200,4 +202,22 @@ select.ng-touched.ng-invalid.form-CUD {
 
 select.ng-touched.ng-valid.form-CUD {
   border-color: #28a745;
+}
+
+.slider {
+  display: inline;
+  overflow-y: hidden;
+  max-height: 100rem;
+  /* approximate max height */
+  opacity: 1;
+  transition-property: all;
+  transition-duration: .5s;
+  /* transition-timing-function: cubic-bezier(0, 1, 0.5, 1); */
+}
+
+.slider-closed {
+  opacity: 0 !important;
+  max-height: 0rem !important;
+  /* padding: 0 !important;
+  margin: 0 !important; */
 }
