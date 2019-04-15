@@ -1,5 +1,129 @@
+<div class="card m-3 p-3">
+  <form #form="ngForm" autocomplete="off">
+
+    <div class="product-grid">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-lg-7 col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Search</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Product Id" name="productID" #productID="ngModel"
+                  [(ngModel)]="productService.formSearchProductMaster.productID">
+                <input type="text" class="form-control" placeholder="Product Name" name="productName"
+                  #productName="ngModel" [(ngModel)]="productService.formSearchProductMaster.productName">
+              </div>
+            </div>
+            <div class="col-lg-5  col-md-12">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Category</span>
+                </div>
+                <select class="custom-select" name="catID" #catID="ngModel"
+                  [(ngModel)]="productService.formSearchProductMaster.catID" placeholder="Product Id">
+                  <option value="" disabled selected>Choose Category</option>
+                  <option *ngFor="let category of categoryService.categoryList" value="{{category.catID}}">
+                    {{category.catName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Price Range</span>
+            </div>
+            <input type="number" class="form-control" placeholder="From" name="priceFrom" #priceFrom="ngModel"
+              [(ngModel)]="productService.formSearchProductMaster.priceFrom">
+            <input type="number" class="form-control" placeholder="To" name="priceTo" #priceTo="ngModel"
+              [(ngModel)]="productService.formSearchProductMaster.priceTo">
+          </div>
+        </div>
+        <div class="col text-right">
+          <button *ngIf="productService.isSearchMaster" type="button" class="btn btn-danger"
+            (click)="productService.clearFormSearchProductMaster()">Clear</button>
+          &nbsp;
+          <button type="button" class="btn btn-primary" (click)="productService.searchProductMaster()">Search</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
 <div class="card m-3">
-  <div class="m-3">
+  <div class="card m-3">
+    <div class="m-3">
+      <div class="row">
+        <div class="col text-left">
+          <h3>{{OperationText}} product.</h3>
+        </div>
+        <div class="col text-right">
+          <button *ngIf="!isOpenFormProduct" type="button" class="btn btn-info"
+            (click)="openFormProduct('ADD')">Add Product</button>
+          <button *ngIf="isOpenFormProduct" type="button" class="btn btn-danger"
+            (click)="closeFormProduct()">Cancel</button>
+        </div>
+      </div>
+      {{ formProduct | json}}
+      <form #formCUD="ngForm" autocomplete="off" *ngIf="isOpenFormProduct">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="productID">Product ID :</label>
+              <input required type="text" class="form-control form-CUD" id="productID" placeholder="Enter product ID"
+                name="productID" #productID="ngModel" [(ngModel)]="formProduct.productID">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="ProductName">Product Name :</label>
+              <input required type="text" class="form-control form-CUD" id="ProductName"
+                placeholder="Enter product name" name="productName" #productName="ngModel"
+                [(ngModel)]="formProduct.productName">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="categoryID">Category ID :</label>
+              <select required id="categoryID" class="custom-select form-CUD" name="catID" #catID="ngModel"
+                [(ngModel)]="formProduct.catID">
+                <option value="" disabled selected>Choose Category</option>
+                <option *ngFor="let category of categoryService.categoryList" value="{{category.catID}}">
+                  {{category.catName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="Price">Price :</label>
+              <input required type="number" class="form-control form-CUD" id="Price" placeholder="Enter price"
+                name="price" #price="ngModel" [(ngModel)]="formProduct.price">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount">Start amount :</label>
+          <input type="number" class="form-control form-CUD" id="amount" placeholder="Enter product name" name="amount"
+            #amount="ngModel" [(ngModel)]="formProduct.amount">
+        </div>
+        <div class="form-group">
+          <label for="imgURL">Product image URL :</label>
+          <input type="text" class="form-control form-CUD" id="imgURL" placeholder="Enter image url" name="imgURL"
+            #imgURL="ngModel" [(ngModel)]="formProduct.imgURL">
+        </div>
+        <button [disabled]="formCUD.invalid" type="button" class="btn btn-primary"
+          (click)="submitForm(OperationText,formProduct)">Create</button>
+
+      </form>
+    </div>
+  </div>
+  <div class="card m-3">
     <table class="table table-striped">
       <thead>
         <tr class="text-center">
@@ -12,19 +136,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of productService.productList" class="text-center">
+        <tr *ngFor="let product of productService.productMasterList" class="text-center">
           <th scope="row">{{product.productID}}</th>
           <td>
-              <!-- style="background-image: url('./assets/img/ + {{product.imgURL}} + '),url(./../../../../assets/img/no-img.jpg);" -->
+            <!-- style="background-image: url('./assets/img/ + {{product.imgURL}} + '),url(./../../../../assets/img/no-img.jpg);" -->
             <div class="product-image"
-              [ngStyle]="{'background-image': 'url(./assets/img/' + product.imgUrl + '),url(./../../../../assets/img/no-img.jpg)'}">
+              [ngStyle]="{'background-image': 'url(product.imgURL),url(./../../../../assets/img/no-img.jpg)'}">
+              <!-- <img src="{{product.imgURL}}"> -->
             </div>
           </td>
           <td>{{product.productName}}</td>
           <td class="text-right">{{product.price}}</td>
           <td class="text-right">{{product.amount}}</td>
-          <td class="text-center"><i class="far fa-edit btn btn-info"></i> &nbsp; <i
-              class="far fa-trash-alt btn btn-danger"></i></td>
+          <td class="text-center">
+            <i class="far fa-edit btn btn-info" (click)="openFormProduct('EDIT',product)"></i>
+            &nbsp;
+            <i class="far fa-trash-alt btn btn-danger"></i></td>
         </tr>
       </tbody>
     </table>

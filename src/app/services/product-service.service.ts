@@ -20,9 +20,21 @@ export class ProductServiceService {
     priceTo: 100000
   }
 
+  productMasterList: Product[];
+  isSearchMaster: boolean = false;
+  formSearchProductMaster: SearchProduct = {
+    productID: "",
+    productName: "",
+    catID: "",
+    priceFrom: 0,
+    priceTo: 100000
+  }
+
   constructor(private http: HttpClient) {
-    this.refreshList();
+    // this.refreshList();
+    console.log("log", this.refreshListMaster());
     this.isSearch = false;
+    this.isSearchMaster = false;
   }
 
   clearFormSearchProduct() {
@@ -45,19 +57,6 @@ export class ProductServiceService {
       .set('catID', this.formSearchProduct.catID)
       .set('priceFrom', this.formSearchProduct.priceFrom.toString())
       .set('priceTo', this.formSearchProduct.priceTo.toString());
-    // if(this.formSearchProduct.productName == ""){
-    //   console.log("productName", this.formSearchProduct.productName);
-    // }
-    // else{
-    //   console.log("productName", this.formSearchProduct.productName);
-    //   params3.set('productName', this.formSearchProduct.productName);
-    // }
-    // this.formSearchProduct.productID == "" ? console.log("productID", this.formSearchProduct.productID) : params3.set('productID', this.formSearchProduct.productID);
-    // this.formSearchProduct.productName == "" ? console.log("productName", this.formSearchProduct.productName) : params3.set('productName', this.formSearchProduct.productName);
-    // this.formSearchProduct.catID == "" ? console.log("catID", this.formSearchProduct.catID) : params3.set('catID', this.formSearchProduct.catID);
-    // this.formSearchProduct.priceFrom == 0 ? console.log("priceFrom", this.formSearchProduct.priceFrom) : params3.set('priceFrom', this.formSearchProduct.priceFrom.toString());
-    // this.formSearchProduct.priceTo == 100000 ? console.log("priceTo", this.formSearchProduct.priceTo) : params3.set('priceTo', this.formSearchProduct.priceTo.toString());
-    // const params = new HttpParams({ fromString: '_page=1&_limit=1' });
     console.log(params3);
     this.http.get(this.rootURL + "/product", { params: params3 })
       .toPromise()
@@ -70,5 +69,72 @@ export class ProductServiceService {
     this.http.get(this.rootURL + "/product")
       .toPromise()
       .then(res => this.productList = res as Product[]).then(res => { console.log('refreshProductList', this.productList) });
+  }
+
+  //------------------------------------Master Part
+  clearFormSearchProductMaster() {
+    this.isSearchMaster = false;
+    this.formSearchProductMaster = {
+      productID: "",
+      productName: "",
+      catID: "",
+      priceFrom: 0,
+      priceTo: 100000
+    }
+    this.refreshListMaster();
+  }
+
+  searchProductMaster() {
+    this.isSearchMaster = true;
+    let params3 = new HttpParams()
+      .set('productID', this.formSearchProductMaster.productID)
+      .set('productName', this.formSearchProductMaster.productName)
+      .set('catID', this.formSearchProductMaster.catID)
+      .set('priceFrom', this.formSearchProductMaster.priceFrom.toString())
+      .set('priceTo', this.formSearchProductMaster.priceTo.toString());
+    console.log(params3);
+    this.http.get(this.rootURL + "/product", { params: params3 })
+      .toPromise()
+      .then(res => this.productMasterList = res as Product[]).then(res => { console.log('productMasterList', this.productMasterList) });
+  }
+
+  // refreshListMaster(): Product[] {
+  //   this.isSearch = false;
+  //   console.log("refreshList-Master()");
+  //   let result: Product[];
+  //   this.http.get(this.rootURL + "/product")
+  //     .toPromise()
+  //     .then(res => {
+  //       this.productMasterList = res as Product[];
+  //       result = res as Product[];
+  //     }).then(res => { console.log('productMasterList', this.productMasterList) });
+  //   return result;
+  // }
+  refreshListMaster() {
+    this.isSearch = false;
+    console.log("refreshList-Master()");
+    return this.http.get(this.rootURL + "/product")
+      .toPromise()
+    .then(res => {
+      this.productMasterList = res as Product[];
+    }).then(res => { console.log('productMasterList', this.productMasterList) });
+  }
+
+  insertProduct(product: Product) {
+    this.http.post(this.rootURL + "/product", product)
+      .toPromise()
+      .then((res: any) => {
+        console.log(res);
+        this.refreshListMaster();
+      });
+  }
+
+  updateProduct(product: Product) {
+    this.http.put(this.rootURL + `/product/${product.productID}`, product)
+      .toPromise()
+      .then((res: any) => {
+        console.log(res);
+        this.refreshListMaster();
+      });
   }
 }

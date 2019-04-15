@@ -26,7 +26,8 @@
                 <select class="custom-select" name="catID" #catID="ngModel"
                   [(ngModel)]="productService.formSearchProduct.catID" placeholder="Product Id">
                   <option value="" disabled selected>Choose Category</option>
-                  <option *ngFor="let category of categoryService.categoryList" value="{{category.catID}}">{{category.catName}}</option>
+                  <option *ngFor="let category of categoryService.categoryList" value="{{category.catID}}">
+                    {{category.catName}}</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
@@ -46,10 +47,10 @@
           </div>
         </div>
         <div class="col text-right">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" (click)="productService.searchProduct()">Search</button>
-            <button *ngIf="productService.isSearch" type="button" class="btn btn-danger"  (click)="productService.clearFormSearchProduct()">Clear</button>
-          </div>
+          <button *ngIf="productService.isSearch" type="button" class="btn btn-danger"
+            (click)="productService.clearFormSearchProduct()">Clear</button>
+            &nbsp;
+          <button type="button" class="btn btn-primary" (click)="productService.searchProduct()">Search</button>
         </div>
       </div>
     </div>
