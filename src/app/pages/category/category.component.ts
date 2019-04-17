@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  searchToggle:boolean = true;
+  searchToggle:boolean = false;
   constructor(
     public productService: ProductServiceService,
     public categoryService: CategoryServiceService

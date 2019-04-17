@@ -32,7 +32,7 @@ export class ProductServiceService {
 
   constructor(private http: HttpClient) {
     this.refreshList();
-    console.log("log", this.refreshListMaster());
+    this.refreshListMaster();
     this.isSearch = false;
     this.isSearchMaster = false;
   }
@@ -57,18 +57,16 @@ export class ProductServiceService {
       .set('catID', this.formSearchProduct.catID)
       .set('priceFrom', this.formSearchProduct.priceFrom.toString())
       .set('priceTo', this.formSearchProduct.priceTo.toString());
-    console.log(params3);
     this.http.get(this.rootURL + "/product", { params: params3 })
       .toPromise()
-      .then(res => this.productList = res as Product[]).then(res => { console.log('searchProductList', this.productList) });
+      .then(res => this.productList = res as Product[]);
   }
 
   refreshList() {
     this.isSearch = false;
-    console.log("refreshList()");
     this.http.get(this.rootURL + "/product")
       .toPromise()
-      .then(res => this.productList = res as Product[]).then(res => { console.log('refreshProductList', this.productList) });
+      .then(res => this.productList = res as Product[]);
   }
 
   //------------------------------------Master Part
@@ -92,24 +90,11 @@ export class ProductServiceService {
       .set('catID', this.formSearchProductMaster.catID)
       .set('priceFrom', this.formSearchProductMaster.priceFrom.toString())
       .set('priceTo', this.formSearchProductMaster.priceTo.toString());
-    console.log(params3);
     this.http.get(this.rootURL + "/product", { params: params3 })
       .toPromise()
-      .then(res => this.productMasterList = res as Product[]).then(res => { console.log('productMasterList', this.productMasterList) });
+      .then(res => this.productMasterList = res as Product[]);
   }
 
-  // refreshListMaster(): Product[] {
-  //   this.isSearch = false;
-  //   console.log("refreshList-Master()");
-  //   let result: Product[];
-  //   this.http.get(this.rootURL + "/product")
-  //     .toPromise()
-  //     .then(res => {
-  //       this.productMasterList = res as Product[];
-  //       result = res as Product[];
-  //     }).then(res => { console.log('productMasterList', this.productMasterList) });
-  //   return result;
-  // }
   refreshListMaster() {
     this.isSearch = false;
     console.log("refreshList-Master()");
@@ -117,7 +102,7 @@ export class ProductServiceService {
       .toPromise()
     .then(res => {
       this.productMasterList = res as Product[];
-    }).then(res => { console.log('productMasterList', this.productMasterList) });
+    });
   }
 
   insertProduct(product: Product) {
@@ -131,6 +116,15 @@ export class ProductServiceService {
 
   updateProduct(product: Product) {
     this.http.put(this.rootURL + `/product/${product.productID}`, product)
+      .toPromise()
+      .then((res: any) => {
+        console.log(res);
+        this.refreshListMaster();
+      });
+  }
+
+  deleteProduct(product: Product) {
+    this.http.delete(this.rootURL + `/product/${product.productID}`)
       .toPromise()
       .then((res: any) => {
         console.log(res);

@@ -10,8 +10,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./master-product.component.css']
 })
 export class MasterProductComponent implements OnInit {
+  searchToggle: boolean = false;
   isOpenFormProduct: boolean = false;
-  OperationText: string = "Operation";
+  OperationText: string;
   formProduct: Product = {
     productID: "",
     productName: "",
@@ -39,7 +40,6 @@ export class MasterProductComponent implements OnInit {
   closeFormProduct() {
     this.isOpenFormProduct = false;
     this.resetForm();
-    this.OperationText = "Operation";
   }
 
   resetForm() {
@@ -54,13 +54,18 @@ export class MasterProductComponent implements OnInit {
   }
 
   submitForm(opt: string, formProduct: Product) {
-    if (opt == 'ADD') {
+    if (opt == 'Add') {
       this.productService.insertProduct(formProduct);
     }
-    else if (opt == 'EDIT'){
+    else if (opt == 'Edit') {
       this.productService.updateProduct(formProduct);
     }
+  }
 
+  deleteProduct(product: Product){
+    if(confirm(`Are you sure to delete ${product.productName} (${product.productID})?`)){
+      this.productService.deleteProduct(product);
+    }
   }
 
 }
