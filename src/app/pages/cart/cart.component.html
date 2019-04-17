@@ -1,3 +1,84 @@
-<p>
-  cart works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3>Shopping Cart</h3>
+    </div>
+  </div>
+  <div class="card">
+    <div class="m-5">
+      <div *ngIf="cartService.cartLength <= 0" class="text-center">
+        <h4>Your cart is empty.</h4>
+        <button class="btn-block-brown m-1" routerLink="/category">
+          GO SHOPPING
+        </button>
+      </div>
+      <div *ngIf="cartService.cartLength > 0">
+        <div class="row mb-3">
+          <div class="col text-left">
+            <a routerLink="/category"><i class="fas fa-shopping-basket"></i>
+              GO BACK TO SHOPPING</a>
+          </div>
+          <div class="col text-right">
+            <a routerLink="." (click)="cartService.clearCartList()">
+              CLEAR CART</a>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="text-left">Product</th>
+              <th scope="col" class="text-center">Quatity</th>
+              <th scope="col" class="text-center">Total</th>
+              <th scope="col" class="text-center">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cart of cartService.cartList">
+              <td class="">
+                <div class="card product-image-medium"
+                  [ngStyle]="{'background-image': 'url(../../../../../assets/img/no-img.jpg)'}">
+                </div>
+                <span class="pl-3">
+                  {{cart.product.productName}}
+                </span>
+              </td>
+              <td class="text-center">
+                <input type="number" class="input-quatity m-1" [(ngModel)]="cart.quantity">
+              </td>
+              <td class="text-right price-font">{{cart.product.price * cart.quantity | currency:'THB':'symbol-narrow'}}
+              </td>
+              <td class="text-center">
+                <button class="btn btn-outline-danger"
+                  (click)="cartService.removeFromCartList(cart.product.productID)">x</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <div>
+          <div class="row">
+            <div class="col text-center">
+              CART OVERVIEW
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              TOTAL
+            </div>
+            <div class="col text-right">
+              {{cartService.totalPrice | currency:'THB':'symbol-narrow'}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col text-right">
+              <button class="btn-block-brown">
+                CHECK OUT
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

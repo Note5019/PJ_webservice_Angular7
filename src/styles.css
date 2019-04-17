@@ -232,6 +232,17 @@ select.ng-touched.ng-valid.form-CUD {
   background-position: 50% 50%;
 }
 
+.product-image-medium {
+  float: left;
+  /* max-width: 100px;
+  max-height: 100px; */
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100%;
+}
+
 .card {
   box-shadow: 5px 5px 5px 0px rgba(230, 230, 230, 1);
 }
@@ -239,7 +250,7 @@ select.ng-touched.ng-valid.form-CUD {
 .price-font {
   color: #9f9f9f;
   font-family: "Playfair Display";
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .input-quatity {
@@ -251,7 +262,7 @@ select.ng-touched.ng-valid.form-CUD {
   border: 0;
 }
 
-.btn-add-to-cart {
+.btn-block-brown {
   color: #fff;
   background-color: #3b3d38;
   border-color: #3b3d38;

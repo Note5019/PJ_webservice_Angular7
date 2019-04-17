@@ -14,7 +14,9 @@ export class CategoryComponent implements OnInit {
     public productService: ProductServiceService,
     public categoryService: CategoryServiceService,
     public cartService: CartServiceService
-    ) { }
+    ) { 
+      // this.cartService.makeCartObject(this.productService.productList?[0],1);
+    }
 
   ngOnInit() {
   }

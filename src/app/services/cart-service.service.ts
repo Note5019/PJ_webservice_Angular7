@@ -13,9 +13,10 @@ export class CartServiceService {
   }
   get totalPrice(){
     let totalPrice = 0;
-    return () => {
-      
-    };
+    this.cartList.forEach( c => {
+      totalPrice += (c.product.price * c.quantity);
+    });
+    return totalPrice;
   }
   makeCartObject(product:Product , quatity:number){
     let obj: Cart = {
@@ -27,7 +28,7 @@ export class CartServiceService {
 
   addToCartList(cart:Cart){
     let dup = this.cartList.findIndex( c => c.product.productID === cart.product.productID);
-    if(dup > -1){
+    if(dup > -1){     // index = -1 >> not found
       console.log(dup);
       this.cartList[dup].quantity += cart.quantity;
     }
@@ -35,7 +36,16 @@ export class CartServiceService {
       this.cartList.push(cart);
     }
     console.log(this.cartList);
-    
+  }
+
+  removeFromCartList(ProductID:string){
+    let index = this.cartList.findIndex( c => c.product.productID === ProductID);
+    if(index > -1){   // index = -1 >> not found
+      this.cartList.splice(index,1);
+    }
+  }
+  clearCartList(){
+    this.cartList = [];
   }
   //---------------------------------------
   public cartListSubject = new BehaviorSubject([]);

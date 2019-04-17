@@ -1,5 +1,11 @@
 <div class="container mt-4">
-  <div class="card">
+  <div class="card p-3">
+    <div class="row m-3">
+      <div class="col text-left">
+        <a routerLink="/category"><i class="fas fa-shopping-basket"></i>
+          GO BACK TO SHOPPING</a>
+      </div>
+    </div>
     <div class="row">
       <div class="col text-center d-flex justify-content-around">
         <div class="card m-3 product-image-big"
@@ -22,7 +28,7 @@
           <!-- placeholder="To" name="priceTo" #priceTo="ngModel"
             [(ngModel)]="productService.formSearchProduct.priceTo" -->
           <input type="number" class="input-quatity m-1" [(ngModel)]="quatity">
-          <button class="btn-add-to-cart m-1" (click)="cartService.makeCartObject(product,quatity)">
+          <button class="btn-block-brown m-1" (click)="cartService.makeCartObject(product,quatity)">
             ADD TO CART
           </button>
         </div>

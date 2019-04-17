@@ -1,8 +1,9 @@
+<app-cart></app-cart>
 <div class="m-3">
 
   <div class="row mb-2">
     <div class="col-10">
-      <h4>Shopping &nbsp; ({{productService.productList?.length}} items) </h4>
+      <h3>Shopping &nbsp; ({{productService.productList?.length}} items) </h3>
     </div>
     <div class="col-2 text-right">
       <button class="btn btn-outline-info" (click)="searchToggle = !searchToggle ">
@@ -87,7 +88,7 @@
           <div class="card-body">
             <!-- <div class="card-title">{{product.productID}}</div> -->
             <div class="card-title text-center">{{product.productName}}</div>
-            <div class="card-text text-right">{{product.price | currency:'THB':'symbol-narrow'}}</div>
+            <div class="card-text text-right price-font">{{product.price | currency:'THB':'symbol-narrow'}}</div>
           </div>
         </div>
       </div>
