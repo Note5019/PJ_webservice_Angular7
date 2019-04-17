@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="row">
+      <div class="col text-center d-flex justify-content-around">
+        <div class="card m-3 product-image-big"
+          [ngStyle]="{'background-image': 'url(../../../../../assets/img/no-img.jpg)'}">
+        </div>
+      </div>
+      <div class="col m-3">
+        <div class="row mb-3">
+          <div class="col text-center">
+            <h2>{{product?.productName}}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center price-font">
+            {{product?.price | currency:'THB':'symbol-narrow'}}
+          </div>
+        </div>
+        <hr>
+        <div class="col text-center">
+          <!-- placeholder="To" name="priceTo" #priceTo="ngModel"
+            [(ngModel)]="productService.formSearchProduct.priceTo" -->
+          <input type="number" class="input-quatity m-1" [(ngModel)]="quatity">
+          <button class="btn-add-to-cart m-1" (click)="cartService.makeCartObject(product,quatity)">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

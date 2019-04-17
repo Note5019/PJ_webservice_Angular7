@@ -1,3 +1,4 @@
+import { CartServiceService } from './../../services/cart-service.service';
 import { CategoryServiceService } from './../../services/category-service.service';
 import { ProductServiceService } from './../../services/product-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ export class CategoryComponent implements OnInit {
   searchToggle:boolean = false;
   constructor(
     public productService: ProductServiceService,
-    public categoryService: CategoryServiceService
+    public categoryService: CategoryServiceService,
+    public cartService: CartServiceService
     ) { }
 
   ngOnInit() {

@@ -13,6 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { MasterProductComponent } from './pages/master-product/master-product.component';
 import { Topbar2Component } from './components/topbar2/topbar2.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { Topbar2Component } from './components/topbar2/topbar2.component';
     HomeComponent,
     MasterProductComponent,
     Topbar2Component,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { SearchProduct } from './../models/searchProduct';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Product } from '../models/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,13 @@ export class ProductServiceService {
     this.http.get(this.rootURL + "/product", { params: params3 })
       .toPromise()
       .then(res => this.productList = res as Product[]);
+  }
+
+  getProductByID(productID:string):Observable<Object> {
+    this.isSearch = false;
+    return this.http.get(this.rootURL + `/product/${productID}`)
+      // .toPromise();
+      // .then(res => this.productList = res as Product[]);
   }
 
   refreshList() {

@@ -11,7 +11,7 @@ export class Topbar2Component implements OnInit {
   // public collapse: boolean = false;
   public cart_num: number;
   constructor(
-    private cartService: CartServiceService
+    public cartService: CartServiceService
   ) { }
 
   ngOnInit() {
@@ -23,6 +23,6 @@ export class Topbar2Component implements OnInit {
   toggleCartPopup = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    this.cartService.toggleCart()
+    this.cartService.toggleCart_old()
   }
 }

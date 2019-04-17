@@ -1,6 +1,10 @@
-import {Product} from "./product";
+import { Product } from "./product";
 
 export class Cart {
-    product:Product;
-    quantity:number;
+    // constructor(p: Product, qty: number) {
+    //     this.product = p;
+    //     this.quantity = qty;
+    // }
+    product: Product;
+    quantity: number;
 }

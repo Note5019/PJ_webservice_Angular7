@@ -25,18 +25,23 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" routerLink="master/product" routerLinkActive="active-link">PRODUCTS</a>
-          <a class="dropdown-item" routerLink="master/">CATEGORIES</a>
+          <a class="dropdown-item" routerLink="master/" routerLinkActive="active-link">CATEGORIES</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="master/">PURCHASE</a>
+          <a class="dropdown-item" routerLink="master/" routerLinkActive="active-link">PURCHASE</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="master/">SALE ORDER</a>
+          <a class="dropdown-item" routerLink="master/" routerLinkActive="active-link">SALE ORDER</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav my-3 my-lg-0">
       <li class="nav-item">
-        <a class="nav-link " href="#">
-          <i class="fa fa-shopping-cart"></i> GO TO CART
+        <a class="nav-link " routerLink="/cart" routerLinkActive="active-link">
+          <span>
+            ( {{cartService.cartLength}} )
+          </span> 
+          <i class="fa fa-shopping-cart">
+
+          </i> GO TO CART
         </a>
       </li>
     </ul>

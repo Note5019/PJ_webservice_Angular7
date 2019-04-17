@@ -221,3 +221,43 @@ select.ng-touched.ng-valid.form-CUD {
   /* padding: 0 !important;
   margin: 0 !important; */
 }
+
+.product-image-big {
+  float: left;
+  max-width: 350px;
+  max-height: 350px;
+  height: 500px;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.card {
+  box-shadow: 5px 5px 5px 0px rgba(230, 230, 230, 1);
+}
+
+.price-font {
+  color: #9f9f9f;
+  font-family: "Playfair Display";
+  font-size: 2em;
+}
+
+.input-quatity {
+  text-align: center;
+  width: 65px;
+  line-height: 58px;
+  background: #eee;
+  color: #7b7b7b;
+  border: 0;
+}
+
+.btn-add-to-cart {
+  color: #fff;
+  background-color: #3b3d38;
+  border-color: #3b3d38;
+  /* width: 65px; */
+  line-height: 58px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 0;
+}

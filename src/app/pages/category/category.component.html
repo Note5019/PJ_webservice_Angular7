@@ -6,8 +6,7 @@
     </div>
     <div class="col-2 text-right">
       <button class="btn btn-outline-info" (click)="searchToggle = !searchToggle ">
-          <span class="small"
-          *ngIf="productService.isSearch">[Filterd] &nbsp; </span> <i class="fas fa-search"></i>
+        <span class="small" *ngIf="productService.isSearch">[Filterd] &nbsp; </span> <i class="fas fa-search"></i>
       </button>
     </div>
   </div>
@@ -81,14 +80,14 @@
               [ngStyle]="{'background-image': 'url(./assets/img/' + product.imgUrl + '),url(./assets/img/no-img.jpg)'}">
             </div>
             <div class="overlay">
-              <div class="button button-primary" [routerLink]="['../product',i+1]">View Details</div>
-              <div class="button button-primary" (click)="addToCart(product)">Add To Cart</div>
+              <div class="button button-primary" [routerLink]="['/product', product.productID]">View Details</div>
+              <div class="button button-primary" (click)="cartService.makeCartObject(product,1)">Add To Cart</div>
             </div>
           </div>
           <div class="card-body">
-            <div class="card-title">{{product.productID}}</div>
-            <div class="card-text">{{product.productName}}</div>
-            <div class="card-text text-right">{{product.price | currency :'฿':true }}</div>
+            <!-- <div class="card-title">{{product.productID}}</div> -->
+            <div class="card-title text-center">{{product.productName}}</div>
+            <div class="card-text text-right">{{product.price | currency:'THB':'symbol-narrow'}}</div>
           </div>
         </div>
       </div>
